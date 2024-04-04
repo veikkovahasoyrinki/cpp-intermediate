@@ -48,12 +48,10 @@ AnagramDict::AnagramDict(const vector<string>& words)
         if (std::find(dict[str].begin(), dict[str].end(), element) == dict[str].end())
             dict[str].push_back(element);
     }
-
     auto tmpMap = dict;
     for (auto & element: tmpMap) {
-        if (element.second.size() == 1) {
-            auto it = dict.find(element.first);
-            dict.erase(it);
+        if (element.second.size() == 1) {;
+            dict.erase(dict.find(element.first));
         }
     }
 }
