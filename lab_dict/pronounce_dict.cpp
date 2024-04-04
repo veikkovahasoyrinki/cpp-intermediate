@@ -75,8 +75,15 @@ PronounceDict::PronounceDict(const unordered_map< string, vector< string > >&
  * one or both words weren't in the dictionary).
  * Note: The word keys in the dictionary are stored in uppercase.
  */
-bool PronounceDict::homophones(const string& word1, const string& word2) const
-{
-    /* Your code goes here! */
-    return true;
+bool PronounceDict::homophones(const string& word1, const string& word2) const {
+    string localWord1 = word1;
+    string localWord2 = word2;    
+    std::transform(localWord1.begin(), localWord1.end(), localWord1.begin(), toupper);
+    std::transform(localWord2.begin(), localWord2.end(), localWord2.begin(), toupper);
+    if (this->dict.find(localWord1) != this->dict.end() && this->dict.find(localWord2) != this->dict.end()) {
+        if (this->dict.find(localWord1)->second == this->dict.find(localWord2)->second) {
+            return true;
+        }
+    }
+    return false;
 }
